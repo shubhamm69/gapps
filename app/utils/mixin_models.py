@@ -283,80 +283,13 @@ class SubControlMixin(object):
         if self.has_feature("feature_evidence"):
             if not self.has_evidence():
                 return False
-
-        if framework.name == "soc2":
+        if framework.name == "iso27001":
             """
             control must be implemented and have evidence
             attached
             """
             return True
-        elif framework.name == "cmmc":
-            """
-            control must be implemented, have evidence
-            attached and based on the level
-            """
-            #self.p_control.control.level
-            return True
-        elif framework.name == "cmmc_v2":
-            """
-            control must be implemented, have evidence
-            attached and based on the level
-            """
-            return True
-        elif framework.name == "iso27001":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "hipaa":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "nist_800_53_v4":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "nist_csf_v1.1":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "asvs_v4.0.1":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "ssf":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "cisv8":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "pci_3.1":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
-        elif framework.name == "custom":
-            """
-            control must be implemented and have evidence
-            attached
-            """
-            return True
+        
         return False
 
     def has_evidence(self, id=None):

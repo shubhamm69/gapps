@@ -83,16 +83,8 @@ MAIL_PASSWORD="app password" # https://support.google.com/accounts/answer/185833
 ```
 
 ### Supported frameworks
-+ SOC2
-+ CMMC
-+ ASVS
 + ISO27001
-+ HIPAA
-+ NIST CSF
-+ NIST 800-53
-+ CSC CIS 18
-+ PCI DSS
-+ SSF (custom framework "Startup Security Framework")
+
 
 ### Roadmap
 

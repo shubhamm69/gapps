@@ -851,14 +851,11 @@ class Control(LogMixin, db.Model):
     mapping = db.Column(db.JSON(),default={})
     vendor_recommendations = db.Column(db.JSON(),default={})
     """framework specific fields"""
-    # CMMC
-    level = db.Column(db.Integer, default=1)
 
     # ISO27001
     operational_capability = db.Column(db.String())
     control_type = db.Column(db.String())
 
-    # HIPAA
     dti = db.Column(db.String(), default="easy")
     dtc = db.Column(db.String(), default="easy")
     meta = db.Column(db.JSON(),default="{}")
@@ -975,7 +972,7 @@ class SubControl(LogMixin, db.Model):
     meta = db.Column(db.JSON(), default={})
     tasks = db.Column(db.JSON(), default={})
     """framework specific fields"""
-    # CSC
+    
     implementation_group = db.Column(db.Integer)
 
     control_id = db.Column(db.Integer, db.ForeignKey('controls.id'), nullable=False)
@@ -1021,10 +1018,7 @@ class Project(LogMixin, db.Model, DateMixin):
     """
     framework specific fields
     """
-    # CMMC
-    target_level = db.Column(db.Integer, default=1)
-
-    # HIPAA
+    
     tags = db.relationship('Tag', secondary='project_tags', lazy='dynamic',
         backref=db.backref('projects', lazy='dynamic'))
     comments = db.relationship('ProjectComment', backref='project', lazy='dynamic', cascade="all, delete-orphan")
@@ -1463,11 +1457,7 @@ class ProjectSubControl(LogMixin, db.Model, SubControlMixin):
     """
     framework specific fields
     """
-    # SOC2
-    auditor_feedback = db.Column(db.String())
-    # CMMC
-    process_maturity = db.Column(db.Integer(),default=0)
-
+    
     """
     may have multiple evidence items for each control
     """

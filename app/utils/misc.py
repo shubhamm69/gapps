@@ -67,55 +67,8 @@ def project_creation(tenant, payload, user):
     framework = models.Framework.find_by_name(fw_name, tenant.id)
     if not framework:
         return False
-    if fw_name == "soc2":
+    if fw_name == "na":
         category_list = []
-        if payload.get("criteria-1"):
-            category_list.append("security")
-        if payload.get("criteria-2"):
-            category_list.append("availability")
-        if payload.get("criteria-3"):
-            category_list.append("confidentiality")
-        if payload.get("criteria-4"):
-            category_list.append("integrity")
-        if payload.get("criteria-5"):
-            category_list.append("privacy")
-
-        filter_list = []
-        for category in category_list:
-            filter_list.append(models.Control.category == category)
-        controls = models.Control.query.filter(or_(*filter_list)).filter(models.Control.framework_id == framework.id).all()
-    elif fw_name == "cmmc":
-        level_list = []
-        if payload.get("level-1"):
-            level_list.append(1)
-        if payload.get("level-2"):
-            level_list.append(2)
-        if payload.get("level-3"):
-            level_list.append(3)
-        if payload.get("level-4"):
-            level_list.append(4)
-        if payload.get("level-5"):
-            level_list.append(5)
-        if not level_list:
-            level_list = [1,2,3,4,5]
-        filter_list = []
-        for level in level_list:
-            filter_list.append(models.Control.level == level)
-        controls = models.Control.query.filter(or_(*filter_list)).filter(models.Control.framework_id == framework.id).all()
-    elif fw_name == "cmmc_v2":
-        level_list = []
-        if payload.get("level-1"):
-            level_list.append(1)
-        if payload.get("level-2"):
-            level_list.append(2)
-        if payload.get("level-3"):
-            level_list.append(3)
-        if not level_list:
-            level_list = [1,2,3]
-        filter_list = []
-        for level in level_list:
-            filter_list.append(models.Control.level == level)
-        controls = models.Control.query.filter(or_(*filter_list)).filter(models.Control.framework_id == framework.id).all()
     else:
         controls = models.Control.query.filter(models.Control.framework_id == framework.id).order_by(models.Control.id.asc()).all()
 
